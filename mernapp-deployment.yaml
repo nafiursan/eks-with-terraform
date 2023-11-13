@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mernapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mernapp
+  template:
+    metadata:
+      labels:
+        app: mernapp
+    spec:
+      containers:
+      - name: mernapp
+        image: registry.gitlab.com/saminbjit/mernapp:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000  # Expose port 5000
+      imagePullSecrets:
+      - name: my-registry-key
