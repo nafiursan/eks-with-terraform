@@ -1,0 +1,42 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: mernapp-frontend-deployment
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: mernapp-frontend
+#   template:
+#     metadata:
+#       labels:
+#         app: mernapp-frontend
+#     spec:
+#       containers:
+#       - name: mernapp-frontend
+#         image: registry.gitlab.com/saminbjit/mernapp-frontend:latest
+#         imagePullPolicy: Always
+#         ports:
+#         - containerPort: 3000  # Expose port 3000
+#         imagePullSecrets:
+#         - name: my-registry-key
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: registry.gitlab.com/saminbjit/mernapp-frontend:latest
+        imagePullPolicy: Always
+      imagePullSecrets:
+      - name: my-registry-key
