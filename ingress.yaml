@@ -1,0 +1,120 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: frontend-ingress
+# spec:
+#   rules:
+#   - host: frontend-service
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: frontend-service
+#             port:
+#               number: 80
+#--------------------------------------
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: frontend-ingress
+# spec:
+#   rules:
+#   - host: your-frontend-hostname.example.com
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: frontend-service
+#             port:
+#               number: 80
+#   - host: api.your-frontend-hostname.example.com
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: backend-service
+#             port:
+#               number: 80
+
+
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: mernapp-frontend-ingress
+# spec:
+#   rules:
+#   - host: a40e27cb2fbaa41a79eeae688e9297ef-2092173100.us-east-1.elb.amazonaws.com
+#     paths:
+#     - path: /
+#       backend:
+#         serviceName: frontend-service
+#         servicePort: 80
+
+
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: mernapp-frontend-ingress
+# spec:
+#   rules:
+#   - host: a40e27cb2fbaa41a79eeae688e9297ef-2092173100.us-east-1.elb.amazonaws.com
+#     http:   
+#       paths:
+#       - path: /
+#         pathType: ImplementationSpecific
+#         backend:
+#            service:
+#               name: backend-service
+#               port:
+#                   number: 80
+
+
+
+
+
+
+#         apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: mernapp-frontend-ingress
+# spec:
+#   rules:
+#   - host: "*"
+#     backend:
+#       serviceName: mernapp-frontend-service
+#       servicePort: 80
+#       paths:
+#       - path: /
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mern-ingress
+  namespace: default
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-service
+                port: 
+                  number: 3000
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port: 
+                  number: 5000
